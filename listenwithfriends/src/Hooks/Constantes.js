@@ -5,3 +5,7 @@ export const axiosConfig = {
         Authorization: localStorage.getItem('token')
     }
 }
+
+export const BackColor = '#1e1e1e'
+
+export const TextColor = 'white'

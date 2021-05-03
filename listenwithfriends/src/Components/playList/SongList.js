@@ -1,10 +1,11 @@
 import React from 'react'
+import { SongListBox } from '../Styled/Styled'
 
 function SongList() {
     return (
-        <div>
-            /playlist
-        </div>
+        <SongListBox>
+            <h3>Current Song List</h3>
+        </SongListBox>
     )
 }
 

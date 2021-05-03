@@ -13,11 +13,6 @@ const GlobalState = (props) => {
   };
 
 
-
-
-
-
-
   const states = { holderValue, showName, info, value };
   const setters = { setShowName, setInfo, setValue, setHolderValue };
   const requests = {saveInfo };
