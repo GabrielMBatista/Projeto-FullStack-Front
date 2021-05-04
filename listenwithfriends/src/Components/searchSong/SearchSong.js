@@ -1,6 +1,8 @@
 import React from "react";
+import { SearchInput, SearchSongBox } from "../Styled/Styled";
 
 class Search extends React.Component {
+  
   state = { title: "" };
   onSearchChanged = event => {
     const _title = event.target.value;
@@ -14,10 +16,10 @@ class Search extends React.Component {
   render() {
     return (
       <>
-        <form onSubmit={this.onSubmit} className="search-form">
+        <SearchSongBox onSubmit={this.onSubmit} className="search-form">
           <div className="form-controls">
-            <label>Search</label>
-            <input
+            <label>Search Your Music</label>
+            <SearchInput
               id="video-search"
               type="text"
               value={this.state.title}
@@ -25,7 +27,7 @@ class Search extends React.Component {
               placeholder="Enter Search Keyword"
             />
           </div>
-        </form>
+        </SearchSongBox>
       </>
     );
   }
