@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import GlobalStateContext from "../GlobalStates/GlobalStateContext";
-
+import youtubeApi from '../Api/youtube'
 const GlobalState = (props) => {
-  const [info, setInfo] = useState([])
-  const [value, setValue] = useState('fullName')
-  const [holderValue, setHolderValue] = useState('Nome e Sobrenome')
-  const [showName, setShowName] = useState()
+  const [videosMetaInfo, setVideosMetaInfo] = useState([])
+  const [selectedVideoId, setSelectedVideoId] = useState('')
+  const [title, setTitle] = useState('')
 
-  const saveInfo = (newItem) => {
-    info.push(newItem);
-    console.log(`info`, info)
+  const onSearch = async keyword => {
+    const response = await youtubeApi.get("/search", {
+      params: {
+        q: keyword
+      }
+    }).then((res) => {
+      setVideosMetaInfo(res.data.items)
+      setSelectedVideoId(res.data.items[0].id.videoId)
+    })
+    .catch((err) => {
+      console.log(err.message)
+     })
   };
 
 
-  const states = { holderValue, showName, info, value };
-  const setters = { setShowName, setInfo, setValue, setHolderValue };
-  const requests = {saveInfo };
+  const states = {title, videosMetaInfo,selectedVideoId };
+  const setters = { setVideosMetaInfo, setSelectedVideoId,setTitle};
+  const requests = { onSearch };
   const data = { states, setters, requests };
 
   return (

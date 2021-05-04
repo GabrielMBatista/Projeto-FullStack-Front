@@ -1,38 +1,22 @@
-import React from 'react'
-import SongList from '../playList/SongList'
+import React, { useContext } from 'react'
 import { HomeBox } from '../Styled/Styled'
-import youtubeApi from '../../Api/youtube'
 import Search from '../searchSong/SearchSong'
+import VideoList from '../playList/SongList'
+import Videoplayer from '../playList/VideoPlayer'
+import GlobalStateContext from '../../GlobalStates/GlobalStateContext'
 
-
-export default class Home extends React.Component {
-
-    state = {
-        videosMetaInfo: [],
-        selectedVideoId: null
-    };
-    onSearch = async keyword => {
-        const response = await youtubeApi.get("/search", {
-          params: {
-            q: keyword
-          }
-        });
-        this.setState({
-          videosMetaInfo: response.data.items,
-          selectedVideoId: response.data.items[0].id.videoId
-        });
-        console.log(this.state);
-      };
-
-    render() {
-        return (
-            <HomeBox className="App">
-                <SongList />
-                <Search onSearch={this.onSearch}/>
-            </HomeBox>
-
-        );
-    }
-
+function Home() {
+  const { states, requests, setters } = useContext(GlobalStateContext);
+  console.log(`object`, states.videosMetaInfo)
+  return (
+    <HomeBox className="App">
+      <Videoplayer videoId={states.selectedVideoId} />
+      <Search onSearch={requests.onSearch} />
+      <VideoList />
+    </HomeBox>
+  )
 }
+
+export default Home
+
 

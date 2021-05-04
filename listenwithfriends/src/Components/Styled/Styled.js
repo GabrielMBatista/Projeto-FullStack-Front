@@ -46,19 +46,36 @@ display:grid;
 grid-template-columns: 50% 50%;
 grid-row:2;
 grid-column:1/3;
+justify-items:center;
 `
 export const SongListBox = styled.section`
 display:flex;
 flex-direction:column;
-grid-column:1;
+width:100%;
+grid-column:2;
+grid-row:2;
 align-items: center;
 overflow:auto;
 `
-export const SearchSongBox = styled.section`
+export const PlayerBox = styled.section`
+width:80%;
+height:50%;
+grid-column:1;
+grid-row:1/3;
+
+`
+
+export const Frame = styled.iframe`
+width:100%;
+height:100%;
+`
+
+export const SearchSongBox = styled.form`
 display:flex;
 flex-direction:column;
 grid-column:2;
 align-items: center;
+text-align:center;
 `
 
 export const SearchInput = styled.input`
